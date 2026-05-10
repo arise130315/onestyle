@@ -37,10 +37,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .nav-cta:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.3);transform:translateY(-1px)}
 .hamburger{display:none;flex-direction:column;gap:5px;padding:4px;background:none;border:none}
 .hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .3s var(--ease)}
-.mobile-menu{display:none;position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(0,0,0,0.95);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;transform:translateY(-20px);transition:opacity .35s var(--ease),transform .35s var(--ease)}
-.mobile-menu.open{display:flex;opacity:1;transform:translateY(0)}
-.mobile-menu a{font-size:24px;font-weight:600;color:var(--text)}
-.mobile-menu .close-btn{position:absolute;top:20px;right:32px;font-size:32px;color:var(--text);background:none;border:none;cursor:pointer}
+.mobile-menu{display:none;position:fixed;top:64px;right:16px;min-width:200px;background:rgba(28,28,28,0.98);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5),0 4px 10px rgba(0,0,0,0.3);z-index:999;flex-direction:column;padding:8px 0;opacity:0;transform:scale(0.92) translateY(-8px);transform-origin:top right;transition:opacity .2s var(--ease),transform .2s var(--ease);pointer-events:none}
+.mobile-menu.open{display:flex;opacity:1;transform:scale(1) translateY(0);pointer-events:auto}
+.mobile-menu a{font-size:15px;font-weight:400;color:var(--text);padding:12px 20px;text-align:left;transition:background .15s ease;-webkit-tap-highlight-color:rgba(255,255,255,0.08)}
+.mobile-menu a:active{background:rgba(255,255,255,0.08)}
+.mobile-menu .close-btn{display:none}
+.mobile-menu .btn-primary{margin:8px 12px 4px;font-size:14px;padding:10px 16px;justify-content:center}
 
 /* ========== HERO ========== */
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:160px 24px 80px;overflow:hidden;background:#111111}
@@ -209,7 +211,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   .features-pin .features-track{height:auto}
   /* Stage becomes a single-column grid; aside / tabs / canvas use display:contents
      so their children become direct grid items and can be ordered freely. */
-  .features-stage{position:static;height:auto;display:grid;grid-template-columns:1fr;gap:28px;padding:0;align-items:start}
+  .features-stage{position:static;height:auto;display:grid;grid-template-columns:1fr;gap:12px;padding:0;align-items:start}
   .features-aside,.features-tabs,.features-canvas,.features-track-inner{display:contents}
   .features-heading{margin-bottom:32px;text-align:left}
   .features-tab[data-i="0"]{order:1}
@@ -224,8 +226,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   .features-tab .features-tab-desc{grid-template-rows:1fr;opacity:1;margin-top:10px}
   .features-tab .features-tab-desc>span{font-size:16px;line-height:1.7}
   /* Each panel becomes its own rounded dark card */
-  .features-panel{position:relative;inset:auto;display:flex;opacity:1;transform:none;pointer-events:auto;border-radius:20px;background:var(--bg2);border:1px solid var(--border);aspect-ratio:7/5;padding:clamp(20px,5vw,32px);margin-bottom:8px}
+  .features-panel{position:relative;inset:auto;display:flex;opacity:1;transform:none;pointer-events:auto;border-radius:20px;background:var(--bg2);border:1px solid var(--border);aspect-ratio:auto;padding:0;margin-bottom:8px;overflow:hidden}
   .features-panel.is-leaving{opacity:1;transform:none}
+  .features-panel-img{width:100%;height:auto;display:block}
   .feature-grid{grid-template-columns:1fr 1fr}
   .how-it-works-grid{grid-template-columns:1fr;gap:48px}
   .how-it-works-grid::before{display:none}
@@ -234,6 +237,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   /* Tighten section spacing on narrow screens (override desktop's fixed 120px) */
   #features,#grid,#how,body>section.section:nth-of-type(5){padding-top:64px;padding-bottom:64px}
   #features{padding-top:40px;padding-bottom:24px}
+  /* Tighten heading margin-bottom on mobile (override inline styles) */
+  #grid .section-inner > div:first-child{margin-bottom:24px !important}
+  #how .section-inner > div:first-child{margin-bottom:40px !important}
 }
 @media(max-width:480px){
   .navbar{padding:12px 16px}
@@ -534,12 +540,15 @@ window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 60);
 }, { passive: true });
 
-// Mobile menu
+// Mobile menu (Material Design style dropdown)
 const hamburgerBtn = document.getElementById('hamburgerBtn');
 const mobileMenu = document.getElementById('mobileMenu');
-const closeMenuBtn = document.getElementById('closeMenu');
-hamburgerBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
-closeMenuBtn.addEventListener('click', closeMobileMenu);
+hamburgerBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  mobileMenu.classList.toggle('open');
+});
+mobileMenu.addEventListener('click', (e) => e.stopPropagation());
+document.addEventListener('click', () => mobileMenu.classList.remove('open'));
 function closeMobileMenu() { mobileMenu.classList.remove('open'); }
 
 // Hero mockup 3D tilt
