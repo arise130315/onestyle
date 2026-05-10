@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>隐私政策 — OneStyle</title>
+<meta name="description" content="OneStyle 浏览器扩展的隐私政策：本地处理、不收集数据、不上传服务器。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#111111;--bg2:#1f1f1f;--bg3:#0f0f12;
+  --text:#fff;--text2:rgba(255,255,255,0.5);--text3:rgba(255,255,255,0.3);
+  --accent:#4F6EF7;--gradient:linear-gradient(135deg,#4F6EF7 0%,#9B59FF 100%);
+  --border:rgba(255,255,255,0.07);--border-hover:rgba(255,255,255,0.18);
+  --radius-card:20px;--radius-btn:10px;--radius-img:16px;
+  --max-w:1160px;
+  --ease:cubic-bezier(0.4,0,0.2,1);
+  --font:-apple-system,BlinkMacSystemFont,"Inter","PingFang SC","Noto Sans SC",sans-serif;
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+/* ========== NAVBAR ========== */
+.navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:16px 32px;transition:background .35s var(--ease),box-shadow .35s var(--ease)}
+.navbar.scrolled{background:rgba(17,17,17,0.7);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.navbar-inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.nav-logo svg{height:32px;width:120px;display:flex;justify-content:flex-start;align-items:center}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:14px;color:var(--text2);transition:color .25s var(--ease);font-weight:500}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{font-size:14px;font-weight:600;color:var(--text);padding:8px 20px;border:1px solid var(--border-hover);border-radius:var(--radius-btn);transition:all .25s var(--ease)}
+.nav-cta:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.3);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:4px;background:none;border:none}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .3s var(--ease)}
+.mobile-menu{display:none;position:fixed;top:64px;right:16px;min-width:200px;background:rgba(28,28,28,0.98);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5),0 4px 10px rgba(0,0,0,0.3);z-index:999;flex-direction:column;padding:8px 0;opacity:0;transform:scale(0.92) translateY(-8px);transform-origin:top right;transition:opacity .2s var(--ease),transform .2s var(--ease);pointer-events:none}
+.mobile-menu.open{display:flex;opacity:1;transform:scale(1) translateY(0);pointer-events:auto}
+.mobile-menu a{font-size:15px;font-weight:400;color:var(--text);padding:12px 20px;text-align:left;transition:background .15s ease;-webkit-tap-highlight-color:rgba(255,255,255,0.08)}
+.mobile-menu a:active{background:rgba(255,255,255,0.08)}
+.mobile-menu .btn-primary{margin:8px 12px 4px;font-size:14px;padding:10px 16px;justify-content:center}
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:0 32px;height:56px;background-image:linear-gradient(to top,rgb(207,222,246) 20%,rgb(250,250,250) 80%);color:rgb(9,9,11);font-size:18px;font-weight:600;border-radius:16px;border-top:2px solid #fff;transition:all .25s var(--ease);cursor:pointer}
+.btn-primary:hover{opacity:0.9;transform:translateY(-2px)}
+
+/* ========== PRIVACY CONTENT ========== */
+.privacy{padding:160px 24px 100px;position:relative;overflow:hidden}
+.privacy-bg{position:absolute;top:0;left:0;width:100%;height:600px;pointer-events:none;overflow:hidden}
+.privacy-orb{position:absolute;border-radius:50%;filter:blur(140px);opacity:0.18}
+.privacy-orb--blue{width:500px;height:500px;top:-10%;left:5%;background:#4F6EF7}
+.privacy-orb--purple{width:420px;height:420px;top:5%;right:5%;background:#9B59FF}
+.privacy-inner{max-width:780px;margin:0 auto;position:relative;z-index:1}
+.privacy-header{margin-bottom:64px;text-align:center}
+.privacy-header .badge{display:inline-block;font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:2px;padding:6px 14px;border:1px solid var(--border);border-radius:999px;margin-bottom:24px}
+.privacy-header h1{font-size:56px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;margin-bottom:16px}
+.privacy-header h1 .gradient-text{background:linear-gradient(135deg,#D0B2FF 0%,#FFEED8 50%,#E8400D 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.privacy-header p{color:var(--text2);font-size:15px}
+.privacy-summary{background:linear-gradient(135deg,rgba(79,110,247,0.08),rgba(155,89,255,0.08));border:1px solid var(--border);border-radius:var(--radius-card);padding:28px 32px;margin-bottom:56px}
+.privacy-summary h2{font-size:18px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.privacy-summary h2 svg{width:20px;height:20px}
+.privacy-summary p{color:var(--text2);font-size:15px;line-height:1.75}
+.privacy-summary strong{color:var(--text);font-weight:600}
+.privacy-section{margin-bottom:48px}
+.privacy-section h2{font-size:24px;font-weight:700;margin-bottom:18px;letter-spacing:-0.01em}
+.privacy-section h3{font-size:17px;font-weight:600;margin-top:24px;margin-bottom:10px;color:var(--text)}
+.privacy-section p,.privacy-section li{color:var(--text2);font-size:15px;line-height:1.85}
+.privacy-section p{margin-bottom:14px}
+.privacy-section ul{list-style:none;padding:0;margin:0 0 14px}
+.privacy-section li{padding-left:22px;position:relative;margin-bottom:10px}
+.privacy-section li::before{content:"";position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.privacy-section strong{color:var(--text);font-weight:600}
+.privacy-section code{background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:6px;padding:2px 8px;font-size:13px;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;color:var(--text)}
+.privacy-perms{display:grid;grid-template-columns:1fr;gap:12px;margin-top:8px}
+.privacy-perm{display:grid;grid-template-columns:140px 1fr;gap:20px;padding:18px 22px;background:var(--bg2);border:1px solid var(--border);border-radius:14px;transition:border-color .25s var(--ease)}
+.privacy-perm:hover{border-color:var(--border-hover)}
+.privacy-perm-name{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:14px;font-weight:600;color:var(--text)}
+.privacy-perm-desc{color:var(--text2);font-size:14px;line-height:1.7}
+.privacy-contact{margin-top:64px;padding:32px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-card);text-align:center}
+.privacy-contact h3{font-size:18px;font-weight:600;margin-bottom:8px}
+.privacy-contact p{color:var(--text2);font-size:14px}
+.privacy-contact a{color:var(--text);font-weight:500;border-bottom:1px solid var(--border-hover);transition:opacity .25s var(--ease)}
+.privacy-contact a:hover{opacity:0.8}
+
+/* ========== FOOTER ========== */
+.footer{border-top:1px solid var(--border);padding:64px 24px 32px}
+.footer-inner{max-width:var(--max-w);margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:1.5fr 2fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand p{color:var(--text3);font-size:14px;margin-top:12px}
+.footer-links{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.footer-links h5{font-size:13px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px}
+.footer-links a{display:block;font-size:14px;color:var(--text3);padding:4px 0;transition:color .25s var(--ease)}
+.footer-links a:hover{color:var(--text)}
+.footer-contact p{font-size:14px;color:var(--text3)}
+.footer-contact .social-icons{display:flex;gap:12px;margin-top:16px}
+.footer-contact .social-icons a{display:flex;width:36px;height:36px;border-radius:8px;border:1px solid var(--border);align-items:center;justify-content:center;transition:all .25s var(--ease)}
+.footer-contact .social-icons a:hover{border-color:var(--border-hover);background:rgba(255,255,255,0.04)}
+.footer-contact .social-icons svg{width:18px;height:18px;fill:var(--text3)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:24px;text-align:center;font-size:13px;color:var(--text3)}
+.footer-logo svg{height:30px;width:30px}
+
+/* ========== RESPONSIVE ========== */
+@media(max-width:768px){
+  .navbar{padding:16px 24px}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .privacy{padding:120px 20px 64px}
+  .privacy-header{margin-bottom:48px}
+  .privacy-header h1{font-size:40px}
+  .privacy-summary{padding:22px 24px;margin-bottom:40px}
+  .privacy-section h2{font-size:20px}
+  .privacy-perm{grid-template-columns:1fr;gap:8px;padding:16px 18px}
+  .privacy-perm-name{font-size:13px}
+  .footer-grid{grid-template-columns:1fr;gap:32px}
+  .footer-links{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+  .navbar{padding:12px 16px}
+  .privacy-header h1{font-size:32px}
+  .footer-links{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-logo" aria-label="返回首页">
+      <svg width="527" height="136" viewBox="0 0 527 136" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_priv)">
+          <rect x="4" width="128" height="128" rx="32" fill="url(#paint0_priv)"/>
+          <path d="M53.2222 102.587L32.8215 35.5563C31.191 30.199 36.199 25.191 41.5563 26.8215L108.587 47.2222C114.72 49.0886 115.326 57.5318 109.523 60.2556L103.039 63.2995L91.5579 68.6884C87.9902 70.363 83.8094 70.0685 80.5117 67.9101L64.1015 57.1697C62.6979 56.251 61.0745 57.9781 62.0782 59.3222L73.5887 74.7366C75.9243 77.8644 76.347 82.0243 74.6884 85.5579L69.2995 97.0386L66.2556 103.523C63.5318 109.326 55.0886 108.72 53.2222 102.587Z" fill="black"/>
+        </g>
+        <path d="M460 90.1094V17.3594H468V90.1094H460Z" fill="white"/>
+        <path d="M416.263 110.641L443.744 40.6406H452L424.92 110.641H416.263ZM427.876 84.7338L408 40.6406H416.619L435.678 81.5169L427.876 84.7338Z" fill="white"/>
+        <path d="M383.012 90.1094V26.0319L391.003 24.1094V90.1094H383.012ZM373 49.1094V41.0474H403L403 49.1094H373Z" fill="white"/>
+        <path d="M344.547 90.1094C340.309 90.1094 336.766 89.4414 333.92 88.1056C331.073 86.7061 328.922 84.8613 327.467 82.5712C326.012 80.2175 325.19 77.6412 325 74.8422H333.445C333.698 77.1959 334.742 79.2633 336.577 81.0445C338.411 82.762 341.29 83.6208 345.212 83.6208C348.375 83.6208 350.905 83.0165 352.803 81.8079C354.701 80.5356 355.65 78.7226 355.65 76.3689C355.65 74.4605 355.017 72.9974 353.752 71.9796C352.55 70.8982 350.968 70.1348 349.007 69.6895L338.38 67.1132C334.837 66.2226 331.895 64.8549 329.555 63.0101C327.277 61.1017 326.139 58.3346 326.139 54.7086C326.139 51.7188 326.961 49.1425 328.606 46.9796C330.251 44.8168 332.528 43.131 335.438 41.9224C338.348 40.7137 341.669 40.1094 345.401 40.1094C349.577 40.1094 352.993 40.8091 355.65 42.2086C358.37 43.5445 360.394 45.3257 361.723 47.5521C363.114 49.7786 363.873 52.1323 364 54.6132H355.934C355.681 52.5776 354.701 50.7328 352.993 49.0788C351.348 47.4249 348.628 46.5979 344.832 46.5979C341.732 46.5979 339.234 47.2341 337.336 48.5063C335.438 49.7786 334.489 51.5598 334.489 53.8498C334.489 55.631 335.09 56.9351 336.292 57.762C337.557 58.589 339.139 59.257 341.037 59.7659L351.664 62.3422C355.397 63.2328 358.37 64.6959 360.584 66.7315C362.861 68.7671 364 71.6933 364 75.5101C364 78.6272 363.178 81.2671 361.533 83.43C359.888 85.5928 357.611 87.2468 354.701 88.3918C351.791 89.5369 348.406 90.1094 344.547 90.1094Z" fill="white"/>
+        <path d="M272 64.6611C272 59.8583 272.948 54.7359 274.845 51.243C276.741 47.6877 279.397 44.9433 282.81 43.0097C286.224 41.0762 290.144 40.1094 294.569 40.1094C298.868 40.1094 302.629 41.0138 305.853 42.8226C309.078 44.6314 311.575 47.2511 313.345 50.6817C315.115 54.0498 316 59.0475 316 63.7255V67.8811H278.638V60.5444H309.078L307.466 62.4156C307.466 57.8624 306.344 54.0849 303.942 51.4652C301.602 48.7832 297.521 47.0796 294.19 47.0796C290.858 47.0796 287.007 48.1737 284.186 51.243C281.72 53.9251 280.235 57.9949 280.235 62.6729V68.0331C280.235 72.9606 281.957 76.3872 284.612 79.2564C287.33 82.1256 290.744 83.5602 294.853 83.5602C298.204 83.5602 300.828 82.8117 302.724 81.3147C304.684 79.8178 305.98 78.0401 306.612 75.9818H315.147C314.135 80.1608 311.859 83.5602 308.319 86.1799C304.779 88.7995 300.29 90.1094 294.853 90.1094C290.239 90.1094 286.193 89.1426 282.716 87.209C279.302 85.2754 276.647 82.5934 274.75 79.1629C272.917 75.67 272 71.5845 272 66.9065V64.6611Z" fill="white"/>
+        <path d="M479 64.6611C479 59.8583 479.948 54.7359 481.845 51.243C483.741 47.6877 486.397 44.9433 489.81 43.0097C493.224 41.0762 497.144 40.1094 501.569 40.1094C505.868 40.1094 509.629 41.0138 512.853 42.8226C516.078 44.6314 518.575 47.2511 520.345 50.6817C522.115 54.0498 523 59.0475 523 63.7255V67.8811H485.638V60.5444H516.078L514.466 62.4156C514.466 57.8624 513.344 54.0849 510.942 51.4652C508.602 48.7832 504.521 47.0796 501.19 47.0796C497.858 47.0796 494.007 48.1737 491.186 51.243C488.72 53.9251 487.235 57.9949 487.235 62.6729V68.0331C487.235 72.9606 488.957 76.3872 491.612 79.2564C494.33 82.1256 497.744 83.5602 501.853 83.5602C505.204 83.5602 507.828 82.8117 509.724 81.3147C511.684 79.8178 512.98 78.0401 513.612 75.9818H522.147C521.135 80.1608 518.859 83.5602 515.319 86.1799C511.779 88.7995 507.29 90.1094 501.853 90.1094C497.239 90.1094 493.193 89.1426 489.716 87.209C486.302 85.2754 483.647 82.5934 481.75 79.1629C479.917 75.67 479 71.5845 479 66.9065V64.6611Z" fill="white"/>
+        <path d="M189 40.1094C201.703 40.1094 212 50.4068 212 63.1094V67.1094C212 79.8119 201.703 90.1094 189 90.1094C176.297 90.1093 166 79.8119 166 67.1094V63.1094C166 50.4069 176.297 40.1094 189 40.1094ZM189 47.9521C180.532 47.9523 173.667 54.8178 173.667 63.2861V66.9326C173.667 75.4009 180.532 82.2665 189 82.2666C197.468 82.2666 204.334 75.401 204.334 66.9326V63.2861C204.334 54.8177 197.468 47.9521 189 47.9521Z" fill="white"/>
+        <path d="M242 40.1094C253.598 40.1094 263 49.5114 263 61.1094V89.1094H255V61.1094C255 53.9297 249.18 48.1094 242 48.1094C234.82 48.1094 229 53.9297 229 61.1094V89.1094H221V61.1094C221 49.5114 230.402 40.1094 242 40.1094Z" fill="white"/>
+        <defs>
+          <linearGradient id="paint0_priv" x1="68" y1="0" x2="68" y2="128" gradientUnits="userSpaceOnUse">
+            <stop stop-color="white"/>
+            <stop offset="1" stop-color="#E4E4E4"/>
+          </linearGradient>
+          <clipPath id="clip0_priv">
+            <rect width="128" height="128" fill="white" transform="translate(4)"/>
+          </clipPath>
+        </defs>
+      </svg>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#features">核心功能</a>
+      <a href="index.html#grid">更多特性</a>
+      <a href="index.html#how">使用方式</a>
+      <button class="nav-cta" onclick="window.open('#','_blank')">添加到 Chrome</button>
+    </div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#features" onclick="closeMobileMenu()">功能</a>
+  <a href="index.html#grid" onclick="closeMobileMenu()">更多特性</a>
+  <a href="index.html#how" onclick="closeMobileMenu()">使用方式</a>
+  <button class="btn-primary" onclick="closeMobileMenu()">添加到 Chrome</button>
+</div>
+
+<!-- ===== PRIVACY CONTENT ===== -->
+<main class="privacy">
+  <div class="privacy-bg">
+    <div class="privacy-orb privacy-orb--blue"></div>
+    <div class="privacy-orb privacy-orb--purple"></div>
+  </div>
+  <div class="privacy-inner">
+    <header class="privacy-header">
+      <span class="badge">Privacy Policy</span>
+      <h1>隐私<span class="gradient-text">政策</span></h1>
+      <p>最后更新：2026 年 5 月 10 日</p>
+    </header>
+
+    <section class="privacy-summary">
+      <h2>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        一句话总结
+      </h2>
+      <p>
+        OneStyle 在你的<strong>本地浏览器</strong>中运行，不会收集你的个人信息，不会上传任何数据到我们的服务器，也不会与任何第三方共享数据。所有标注、评论、设计修改都只保存在你自己的设备上。
+      </p>
+    </section>
+
+    <section class="privacy-section">
+      <h2>1. 我们不收集哪些数据</h2>
+      <p>OneStyle 是一款本地运行的网页可视化样式标注与编辑工具，遵循"最小数据原则"。具体而言：</p>
+      <ul>
+        <li>不要求账号注册或登录</li>
+        <li>不内置任何分析、统计或广告 SDK</li>
+        <li>不向任何服务器发送数据（包括我们自己的服务器）</li>
+        <li>不与任何第三方共享数据</li>
+        <li>不收集你的个人身份信息（PII）</li>
+        <li>不访问与扩展功能无关的网页内容</li>
+      </ul>
+    </section>
+
+    <section class="privacy-section">
+      <h2>2. 扩展在本地处理哪些数据</h2>
+      <p>为了实现可视化标注与样式编辑功能，扩展会在你<strong>主动点击工具栏图标</strong>后，在当前标签页中处理以下数据。这些数据全部保留在你本地浏览器中，不会离开你的设备：</p>
+
+      <h3>页面 DOM 结构与 CSS 样式</h3>
+      <p>用于支持 hover 高亮、元素选中、CSS selector 生成、computed style 读取等功能。读取范围限定于你当前激活了 OneStyle 的标签页，扩展不会在后台或你未交互时访问任何页面。</p>
+
+      <h3>用户生成的标注数据</h3>
+      <p>包括你修改的元素样式 diff、保存的修改快照、评论文本与图钉位置、自定义颜色库与图标库。这些数据通过 Chrome 提供的 <code>chrome.storage.local</code> API 保存在<strong>你本地浏览器</strong>中。</p>
+    </section>
+
+    <section class="privacy-section">
+      <h2>3. 数据存储位置</h2>
+      <p>所有数据均存储在你本地浏览器的 <code>chrome.storage.local</code> 与 <code>localStorage</code> 中，不上传至任何远程服务器。</p>
+      <p>当你卸载扩展、清除浏览器扩展数据，或在 Chrome 设置中清除该扩展的存储时，相关数据将被一并删除。我们无法、也不会以任何方式恢复这些数据。</p>
+    </section>
+
+    <section class="privacy-section">
+      <h2>4. 权限说明</h2>
+      <p>扩展在 manifest 中声明的全部权限及其用途：</p>
+      <div class="privacy-perms">
+        <div class="privacy-perm">
+          <div class="privacy-perm-name">activeTab</div>
+          <div class="privacy-perm-desc">仅在你主动点击工具栏图标后获得对当前标签页的临时访问权限。扩展<strong>不声明任何 host_permissions</strong>，不在页面加载时自动注入脚本。</div>
+        </div>
+        <div class="privacy-perm">
+          <div class="privacy-perm-name">scripting</div>
+          <div class="privacy-perm-desc">在你激活扩展时，由 background service worker 通过 <code>chrome.scripting.executeScript</code> 向当前标签页临时注入工具栏 UI 脚本。</div>
+        </div>
+        <div class="privacy-perm">
+          <div class="privacy-perm-name">storage</div>
+          <div class="privacy-perm-desc">在本地保存你的样式修改、评论图钉、自定义颜色与图标库等数据。仅本地存储，不上传。</div>
+        </div>
+        <div class="privacy-perm">
+          <div class="privacy-perm-name">clipboardWrite</div>
+          <div class="privacy-perm-desc">在你点击"复制 Prompt / 复制 JSON"时，将导出的文本写入系统剪贴板。<strong>不会读取剪贴板内容</strong>。</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="privacy-section">
+      <h2>5. 第三方服务</h2>
+      <p>本扩展不集成任何第三方分析、统计、广告或追踪 SDK，也不与任何第三方服务共享数据。</p>
+    </section>
+
+    <section class="privacy-section">
+      <h2>6. 儿童隐私</h2>
+      <p>本扩展不针对 13 岁以下儿童设计，也不会有意收集任何用户的个人信息（无论年龄）。</p>
+    </section>
+
+    <section class="privacy-section">
+      <h2>7. 政策变更</h2>
+      <p>如本隐私政策有任何更新，我们将在本页面更新"最后更新"日期。重大变更（例如开始收集数据）会通过扩展更新说明或官网公告告知用户。</p>
+    </section>
+
+    <div class="privacy-contact">
+      <h3>联系我们</h3>
+      <p>对本隐私政策有任何疑问，请联系：<a href="mailto:hello@onestyle.design">hello@onestyle.design</a></p>
+    </div>
+  </div>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg width="30" height="30" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_priv_footer)">
+              <rect width="128" height="128" rx="32" fill="url(#paint0_priv_footer)"/>
+              <path d="M49.2222 102.587L28.8215 35.5563C27.191 30.199 32.199 25.191 37.5563 26.8215L104.587 47.2222C110.72 49.0886 111.326 57.5318 105.523 60.2556L99.0386 63.2995L87.5579 68.6884C83.9902 70.363 79.8094 70.0685 76.5117 67.9101L60.1015 57.1697C58.6979 56.251 57.0745 57.9781 58.0782 59.3222L69.5887 74.7366C71.9243 77.8644 72.347 82.0243 70.6884 85.5579L65.2995 97.0386L62.2556 103.523C59.5318 109.326 51.0886 108.72 49.2222 102.587Z" fill="black"/>
+            </g>
+            <defs>
+              <linearGradient id="paint0_priv_footer" x1="64" y1="0" x2="64" y2="128" gradientUnits="userSpaceOnUse">
+                <stop stop-color="white"/>
+                <stop offset="1" stop-color="#E4E4E4"/>
+              </linearGradient>
+              <clipPath id="clip0_priv_footer">
+                <rect width="128" height="128" fill="white"/>
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
+        <p>设计，发生在浏览器里</p>
+      </div>
+      <div class="footer-links">
+        <div>
+          <h5>产品</h5>
+          <a href="index.html#features">功能介绍</a>
+          <a href="#">更新日志</a>
+          <a href="#">使用教程</a>
+        </div>
+        <div>
+          <h5>支持</h5>
+          <a href="#">问题反馈</a>
+          <a href="#">联系我们</a>
+          <a href="privacy.html">隐私政策</a>
+        </div>
+      </div>
+      <div class="footer-contact">
+        <p>hello@onestyle.design</p>
+        <div class="social-icons">
+          <a href="#" aria-label="GitHub">
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+          <a href="#" aria-label="WeChat">
+            <svg viewBox="0 0 24 24"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm3.164 4.508c-1.842-.004-3.739.64-5.14 1.803-1.127.936-1.855 2.182-2.09 3.588-.243 1.434.05 2.85.818 4.118.78 1.289 2.024 2.262 3.498 2.775.805.28 1.67.436 2.55.456h.18c.971-.013 1.912-.188 2.764-.504l.15-.056a.647.647 0 01.54.072l1.433.839a.24.24 0 00.126.04.22.22 0 00.218-.221c0-.054-.022-.107-.036-.16l-.293-1.112a.443.443 0 01.16-.5c1.377-1.013 2.258-2.512 2.258-4.17 0-3.074-2.94-5.963-7.136-5.968zm-1.968 2.726c.482 0 .873.397.873.886a.88.88 0 01-.873.886.88.88 0 01-.872-.886c0-.489.39-.886.872-.886zm4.371 0c.483 0 .873.397.873.886a.88.88 0 01-.873.886.88.88 0 01-.872-.886c0-.489.39-.886.872-.886z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 OneStyle. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburgerBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  mobileMenu.classList.toggle('open');
+});
+mobileMenu.addEventListener('click', (e) => e.stopPropagation());
+document.addEventListener('click', () => mobileMenu.classList.remove('open'));
+function closeMobileMenu() { mobileMenu.classList.remove('open'); }
+</script>
+
+</body>
+</html>
