@@ -146,7 +146,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 /* ========== FEATURE GRID ========== */
 .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .feature-card{background:var(--bg2);border:none;border-radius:var(--radius-card);padding:32px;position:relative;overflow:hidden;transition:all .25s var(--ease);cursor:default}
-.feature-card::before{content:"";position:absolute;top:0;left:0;width:200px;height:200px;background:radial-gradient(circle at var(--x,0px) var(--y,0px),rgba(255,255,255,0.06),transparent 60%);opacity:0;transition:opacity .35s var(--ease);pointer-events:none}
+.feature-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(200px circle at var(--x,0px) var(--y,0px),rgba(255,255,255,0.06),transparent);opacity:0;transition:opacity .35s var(--ease);pointer-events:none}
 .feature-card:hover{border-color:var(--border-hover);transform:translateY(-3px)}
 .feature-card:hover::before{opacity:1}
 .feature-card-icon{font-size:28px;margin-bottom:16px;display:block;width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:rgba(79,110,247,0.08);border-radius:12px;border:1px solid rgba(79,110,247,0.15)}
@@ -160,7 +160,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .how-step-num{font-size:80px;font-weight:800;-webkit-text-stroke:1px rgba(255,255,255,0.15);-webkit-text-fill-color:transparent;line-height:1;margin-bottom:16px}
 .how-step h4{font-size:20px;font-weight:600;margin-bottom:8px}
 .how-step p{font-size:14px;color:var(--text2);line-height:1.6;max-width:280px;margin:0 auto}
-.how-step-icon{width:48px;height:48px;border-radius:50%;background:var(--gradient);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:20px;box-shadow:0 4px 24px rgba(79,110,247,0.3)}
+.how-step-icon{width:48px;height:48px;border-radius:50%;background-image:linear-gradient(135deg,rgba(241,116,138,1) 0%,rgba(253,100,52,1) 50%,rgba(252,113,86,1) 100%);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:20px;box-shadow:0 4px 24px rgba(253,100,52,0.3)}
 
 /* ========== CTA BANNER ========== */
 .cta-banner{position:relative;overflow:hidden;border-radius:var(--radius-card);border:none;background:var(--bg2);padding:clamp(48px,8vw,96px) 32px;text-align:center}
@@ -352,11 +352,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
           <ul class="features-tabs" id="featuresTabs">
           <li class="features-tab is-active" data-i="0">
             <span class="features-tab-label">可视化编辑样式</span>
-            <div class="features-tab-desc"><span>类 Figma 式的可视化编辑，实时调整元素尺寸、字体、颜色、图标、布局等样式。</span></div>
+            <div class="features-tab-desc"><span>类似 Figma 的可视化编辑体验，支持调整元素尺寸、字体、颜色、图标、布局等样式。</span></div>
           </li>
           <li class="features-tab" data-i="1">
             <span class="features-tab-label">智能识别变量</span>
-            <div class="features-tab-desc"><span>自动扫描页面 Token，CSS 变量一键绑定，让设计语言与代码实现完美统一。</span></div>
+            <div class="features-tab-desc"><span>自动扫描页面内的 Token 变量，支持搜索和使用，同时支持自定义导入变量库。</span></div>
           </li>
           <li class="features-tab" data-i="2">
             <span class="features-tab-label">结构化 Prompt 导出</span>
@@ -396,38 +396,38 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   <div class="section-inner">
     <div style="text-align:left;margin-bottom:64px">
       <h2 class="section-title" style="margin:0">强大且灵活</h2>
-      <p class="section-desc" style="margin:12px 0 0;text-align:left">插件支持导出结构化 Prompt 与 JSON 文件，方便对接 AI、同步开发或跨人协作。</p>
+      <p class="section-desc" style="margin:12px 0 0;text-align:left">插件还支持深浅色界面模式、自定义导入图标库、自定义导入变量库、添加上下文批注、保存修改记录等能力。</p>
     </div>
     <div class="feature-grid">
       <div class="feature-card fade-up">
-        <span class="feature-card-icon">&#10022;</span>
-        <h4>CSS 变量感知</h4>
-        <p>自动扫描页面 Token，变量一键绑定</p>
+        <span class="feature-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21.6461 13.4282C21.6479 13.4162 21.6355 13.4071 21.6247 13.4125C20.5306 13.9484 19.3004 14.2493 18 14.2493C13.4437 14.2493 9.75 10.5556 9.75 5.99928C9.75 4.69906 10.0508 3.4691 10.5866 2.37517C10.5919 2.36433 10.5828 2.35197 10.5708 2.35372C5.86357 3.04515 2.25 7.10044 2.25 11.9997C2.25 17.3845 6.61522 21.7497 12 21.7497C16.8995 21.7497 20.955 18.1358 21.6461 13.4282Z" stroke="white" stroke-width="1.5"/></svg></span>
+        <h4>深浅色主题</h4>
+        <p>支持一键切换深色、浅色主题背景</p>
       </div>
       <div class="feature-card fade-up stagger-1">
-        <span class="feature-card-icon">&#11041;</span>
-        <h4>多模式工具栏</h4>
-        <p>设计 / 标尺 / 评论 / 移动，快捷切换</p>
+        <span class="feature-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.75 6C9.75 8.07107 8.07107 9.75 6 9.75C3.92893 9.75 2.25 8.07107 2.25 6C2.25 3.92893 3.92893 2.25 6 2.25C8.07107 2.25 9.75 3.92893 9.75 6Z" stroke="white" stroke-width="1.5"/><path d="M21.7757 5.60495L14.9155 1.86299C14.6156 1.69943 14.25 1.91647 14.25 2.25804V9.74196C14.25 10.0835 14.6156 10.3006 14.9155 10.137L21.7757 6.39505C22.0884 6.2245 22.0884 5.7755 21.7757 5.60495Z" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M2.03033 17.4697L5.46964 14.0303C5.76253 13.7374 6.2374 13.7374 6.5303 14.0303L9.96967 17.4697C10.2626 17.7626 10.2626 18.2374 9.96967 18.5303L6.53033 21.9697C6.23744 22.2626 5.76256 22.2626 5.46967 21.9697L2.03033 18.5303C1.73744 18.2374 1.73743 17.7626 2.03033 17.4697Z" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M21 14.25H15C14.5858 14.25 14.25 14.5858 14.25 15V21C14.25 21.4142 14.5858 21.75 15 21.75H21C21.4142 21.75 21.75 21.4142 21.75 21V15C21.75 14.5858 21.4142 14.25 21 14.25Z" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        <h4>调用图标库</h4>
+        <p>支持调用内置的第三方图标库，或自定义上传图标库，快速替换图标资源</p>
       </div>
       <div class="feature-card fade-up stagger-2">
-        <span class="feature-card-icon">&#9672;</span>
-        <h4>快照存档</h4>
-        <p>修改一键保存，历史记录随时回溯</p>
+        <span class="feature-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.5 9.75L16.5 15.75" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M22.5 14.25L18.75 18" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M15.75 15.75H15.6285C14.0387 15.75 12.75 17.0387 12.75 18.6285C12.75 19.1968 12.5818 19.7523 12.2666 20.2252L11.25 21.75H15.75C17.4069 21.75 18.75 20.4069 18.75 18.75C18.75 17.0931 17.4069 15.75 15.75 15.75Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M10.5 2.25L2.25 21.75" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M10.5 2.25L14.625 12" stroke="white" stroke-width="1.5"/><path d="M5.5498 14.4H11.9998" stroke="white" stroke-width="1.5"/></svg></span>
+        <h4>调用样式变量</h4>
+        <p>支持识别当前页面的CSS变量，或自定义上传变量库，快速调用样式变量</p>
       </div>
       <div class="feature-card fade-up stagger-3">
-        <span class="feature-card-icon">&#8853;</span>
-        <h4>文字实时编辑</h4>
-        <p>点击即改文案，字号 / 字重同步调整</p>
+        <span class="feature-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.5 12C22.5 17.799 17.799 22.5 12 22.5C6.20101 22.5 1.5 17.799 1.5 12C1.5 6.20101 6.20101 1.5 12 1.5C17.799 1.5 22.5 6.20101 22.5 12Z" stroke="white" stroke-width="1.5"/><path d="M11.25 6.75V12.735C11.25 12.7433 11.2567 12.75 11.265 12.75H15.75" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        <h4>保存记录快照</h4>
+        <p>支持管理修改记录，包括保存快照、清空记录等</p>
       </div>
       <div class="feature-card fade-up stagger-4">
-        <span class="feature-card-icon">&#11044;</span>
-        <h4>阴影与描边</h4>
-        <p>可视化 box-shadow / border 编辑器</p>
+        <span class="feature-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 8V10C10 11.1046 9.10457 12 8 12H7" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 8H13C12.4477 8 12 8.44772 12 9C12 9.55228 12.4477 10 13 10H14C14.5523 10 15 10.4477 15 11C15 11.5523 14.5523 12 14 12H12" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 7.5V4C21 3.17157 20.3284 2.5 19.5 2.5C18.6716 2.5 18 3.17157 18 4V20C18 20.8284 17.3284 21.5 16.5 21.5C15.6716 21.5 15 20.8284 15 20V17.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.5 2.5H6C4.89543 2.5 4 3.39543 4 4.5V17.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17.5V19.5C2 20.6046 2.89543 21.5 4 21.5H16.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 7.5H18" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17.5H15" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <h4>导入/导出 JSON</h4>
+        <p>修改记录支持导出/导入为JSON的形式，方便本地保存和开发协作 </p>
       </div>
       <div class="feature-card fade-up stagger-5">
-        <span class="feature-card-icon">&#123;&#125;</span>
-        <h4>JSON 导出</h4>
-        <p>所有改动导出为结构化 JSON，移交开发</p>
+        <span class="feature-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.25 6.53162L11.625 11.2191M11.625 11.2191L21 6.53162M11.625 11.2191V22.1566" stroke="white" stroke-width="1.5"/><path d="M2.66459 6.32396L11.2896 2.01146C11.5007 1.90588 11.7493 1.90588 11.9604 2.01146L20.5854 6.32396C20.8395 6.451 21 6.7107 21 6.99478V17.0052C21 17.2893 20.8395 17.549 20.5854 17.676L11.9604 21.9885C11.7493 22.0941 11.5007 22.0941 11.2896 21.9885L2.66459 17.676C2.4105 17.549 2.25 17.2893 2.25 17.0052V6.99478C2.25 6.7107 2.4105 6.451 2.66459 6.32396Z" stroke="white" stroke-width="1.5"/></svg></span>
+        <h4>多模式合一</h4>
+        <p>样式调整、元素测量、添加批注等操作可以在一个模式下操作，不用来回切换模式</p>
       </div>
     </div>
   </div>
@@ -442,19 +442,19 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     <div class="how-it-works-grid">
       <div class="how-step fade-up">
         <div class="how-step-num">01</div>
-        <div class="how-step-icon">&#9758;</div>
+        <div class="how-step-icon"><svg width="24" height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.41376 9.89804C1.12309 7.99809 3.24425 6.28534 5.17204 7.53971C6.0006 8.07884 6.5904 9.33227 6.87501 10.0378L6.87519 5.00002C6.87522 3.96446 7.71471 3.125 8.75027 3.125C9.78581 3.125 10.6253 3.96444 10.6253 4.99998L10.6256 9.375L10.6255 7.50005C10.6254 6.4645 11.4649 5.625 12.5004 5.625C13.5359 5.625 14.3754 6.46444 14.3754 7.49995V9.375L14.3753 8.7501C14.3752 7.71454 15.2147 6.875 16.2502 6.875C17.2857 6.875 18.1251 7.71442 18.1251 8.7499L18.1251 11.9715C18.1251 15.7151 15.0903 18.75 11.3466 18.75C8.44331 18.75 5.84198 16.9878 4.65362 14.3388C3.85677 12.5625 2.98392 10.7373 2.41376 9.89804Z" stroke="white" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.875 1.875C10 0.625027 7.5 0.625 5.625 1.875" stroke="white" stroke-width="1.25" stroke-linecap="round"/></svg></div>
         <h4>点击任意元素</h4>
         <p>在任意网页上激活 OneStyle 插件，点选你想修改的元素</p>
       </div>
       <div class="how-step fade-up stagger-1">
         <div class="how-step-num">02</div>
-        <div class="how-step-icon">&#9998;</div>
+        <div class="how-step-icon"><svg width="24" height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.2505 5L15.0005 8.75" stroke="white" stroke-width="1.25" stroke-linejoin="round"/><path d="M13.9334 2.293L3.39641 12.2665C3.29755 12.3601 3.23194 12.4834 3.20956 12.6177L2.58631 16.3571C2.54401 16.611 2.76405 16.831 3.01786 16.7887L6.77694 16.1622C6.89908 16.1418 7.01242 16.0856 7.10258 16.0008L17.656 6.06653C17.9127 5.82487 17.9188 5.41881 17.6695 5.1695L14.805 2.30497C14.5656 2.06562 14.1792 2.06031 13.9334 2.293Z" stroke="white" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <h4>实时调整样式</h4>
         <p>通过可视化面板调整尺寸、颜色、字体等属性</p>
       </div>
       <div class="how-step fade-up stagger-2">
         <div class="how-step-num">03</div>
-        <div class="how-step-icon">&#10003;</div>
+        <div class="how-step-icon"><svg width="24" height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.19308 10.2242L7.87731 15.2168C8.02123 15.3787 8.26156 15.4051 8.43629 15.2848C8.45985 15.2686 8.47909 15.247 8.49615 15.2241L16.9152 3.89083" stroke="white" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <h4>保存快照 / 导出</h4>
         <p>一键保存修改快照，或导出结构化 Prompt 移交 AI</p>
       </div>
