@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>OneStyle 小红书 · 图 9 CTA</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:#e5e5e5;padding:40px;display:flex;justify-content:center}
+.slide{
+  width:1080px;height:1440px;
+  background:radial-gradient(120% 80% at 50% 30%, #1a2050 0%, #0a0e26 50%, #050715 100%);
+  position:relative;overflow:hidden;color:#fff;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px;text-align:center;
+}
+.stars{position:absolute;inset:0;pointer-events:none;opacity:0.6}
+.stars span{position:absolute;width:3px;height:3px;background:#fff;border-radius:50%;box-shadow:0 0 8px #fff}
+.logo{
+  width:180px;height:180px;border-radius:40px;
+  background:linear-gradient(180deg,#fff,#e4e4e4);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:40px;
+  box-shadow:0 30px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1);
+}
+.logo svg{width:108px;height:108px}
+.brand{
+  font-size:48px;font-weight:800;color:#fff;margin-bottom:16px;
+  letter-spacing:-0.01em;
+}
+.brand-tag{
+  font-size:26px;color:rgba(255,255,255,0.5);font-weight:400;
+  margin-bottom:80px;
+}
+.cta-row{
+  font-size:140px;font-weight:900;color:#fff;
+  line-height:1;letter-spacing:-0.04em;
+  margin-bottom:40px;
+  display:flex;align-items:center;justify-content:center;gap:32px;
+}
+.cta-em{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:160px;height:160px;
+  background:linear-gradient(135deg,#FD5E32 0%,#E8400D 100%);
+  color:#fff;border-radius:32px;
+  box-shadow:0 16px 40px rgba(253,94,50,0.5);
+  font-size:130px;
+}
+.cta-sub{
+  font-size:40px;color:rgba(255,255,255,0.85);font-weight:500;
+  margin-bottom:64px;
+}
+.emoji-big{
+  font-size:130px;
+  filter:drop-shadow(0 12px 36px rgba(0,0,0,0.5));
+  animation:wiggle 2s ease-in-out infinite;
+}
+@keyframes wiggle{
+  0%,100%{transform:rotate(-5deg)}
+  50%{transform:rotate(5deg)}
+}
+.watermark{
+  position:absolute;bottom:30px;right:40px;
+  font-size:22px;color:rgba(255,255,255,0.4);
+}
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="stars">
+    <span style="top:8%;left:12%"></span>
+    <span style="top:14%;left:78%;width:4px;height:4px"></span>
+    <span style="top:22%;left:90%"></span>
+    <span style="top:34%;left:6%"></span>
+    <span style="top:50%;left:94%;width:2px;height:2px"></span>
+    <span style="top:62%;left:8%;width:4px;height:4px"></span>
+    <span style="top:78%;left:88%"></span>
+  </div>
+
+  <div class="logo">
+    <svg viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M49.2222 102.587L28.8215 35.5563C27.191 30.199 32.199 25.191 37.5563 26.8215L104.587 47.2222C110.72 49.0886 111.326 57.5318 105.523 60.2556L99.0386 63.2995L87.5579 68.6884C83.9902 70.363 79.8094 70.0685 76.5117 67.9101L60.1015 57.1697C58.6979 56.251 57.0745 57.9781 58.0782 59.3222L69.5887 74.7366C71.9243 77.8644 72.347 82.0243 70.6884 85.5579L65.2995 97.0386L62.2556 103.523C59.5318 109.326 51.0886 108.72 49.2222 102.587Z" fill="black"/>
+    </svg>
+  </div>
+
+  <div class="brand">OneStyle</div>
+  <div class="brand-tag">在网页上 P 设计稿 · 一键给 AI 写代码</div>
+
+  <div class="cta-row">
+    评论扣 <span class="cta-em">1</span>
+  </div>
+  <div class="cta-sub">我把插件链接发给你 📩</div>
+
+  <div class="emoji-big">✨</div>
+
+  <div class="watermark">小红书号 · AriseJF</div>
+</div>
+</body>
+</html>
