@@ -2,3 +2,6 @@ node_modules/
 .DS_Store
 .claude/
 .mcp.json
+
+# 小红书推广素材（本地保留，不公开）
+xhs-covers/
